@@ -25,6 +25,14 @@ module MinitestToRspec
           lineage?(parent, %i[ActiveSupport TestCase])
         end
 
+        def active_view_test_case?
+          lineage?(parent, %i[ActionView TestCase])
+        end
+
+        def action_dispatch_test_case?
+          lineage?(parent, %i[ActionDispatch IntegrationTest])
+        end
+
         # Raise an error if we don't know now to process the name
         # of this class.  Specifically, classes with module-shorthand.
         def assert_valid_name
@@ -94,6 +102,8 @@ module MinitestToRspec
           active_support_test_case? ||
             action_controller_test_case? ||
             action_mailer_test_case? ||
+            active_view_test_case? ||
+            action_dispatch_test_case? ||
             test_unit_test_case? ||
             draper_test_case?
         end
