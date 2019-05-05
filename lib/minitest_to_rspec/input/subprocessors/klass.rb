@@ -85,7 +85,7 @@ module MinitestToRspec
         end
 
         def rspec_describe
-          const = s(:const, described_class(@exp.name))
+          const = s(:const, described_class(@exp.test_class_name_s))
           call = s(:call, s(:const, :RSpec), :describe, const)
           call << rdm if @rails
           call

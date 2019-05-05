@@ -65,6 +65,18 @@ module MinitestToRspec
           @exp[1]
         end
 
+        def test_class_name_s
+          res = name
+          if res.is_a?(String) || res.is_a?(Symbol)
+            return res
+          elsif name.respond_to?(:sexp_type) && name.sexp_type == :colon2
+            class_name = "#{name[1][1]}::#{name[2]}"
+            return(class_name)
+          end
+
+          nil
+        end
+
         # Returns the "inheritance".  Examples:
         #
         # - Inherit nothing #=> nil
