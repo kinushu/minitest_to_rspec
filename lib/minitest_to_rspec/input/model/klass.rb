@@ -31,7 +31,7 @@ module MinitestToRspec
           if name.is_a?(Symbol)
             # Valid
           elsif name.respond_to?(:sexp_type) && name.sexp_type == :colon2
-            raise ModuleShorthandError
+            # raise ModuleShorthandError
           else
             raise ProcessingError, "Unexpected class expression: #{name}"
           end
