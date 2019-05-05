@@ -79,6 +79,8 @@ module MinitestToRspec
             :decorator
           elsif @exp.action_mailer_test_case?
             :mailer
+          elsif @exp.active_view_test_case? || @exp.action_dispatch_test_case?
+            nil
           else
             :model
           end
