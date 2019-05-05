@@ -29,6 +29,14 @@ module MinitestToRspec
             )
           end
 
+          it 'replaces `assert_not` with `expect` to be_falsey' do
+            expect(
+              process(parse('assert_not Banana'))
+            ).to eq(
+                   parse('expect(Banana).to be_falsey')
+                 )
+          end
+
           it 'replaces question-mark `assert` with `expect` to eq(true)' do
             expect(
               process(parse('assert Banana.delicious?'))

@@ -63,6 +63,10 @@ module MinitestToRspec
           matcher(:be_truthy)
         end
 
+        def be_falsey
+          matcher(:be_falsey)
+        end
+
         def be_a(exp)
           matcher(:be_a, exp)
         end
@@ -85,6 +89,11 @@ module MinitestToRspec
 
         def method_assert
           refsert eq(s(:true)), be_truthy
+        end
+
+        def method_assert_not
+          actual = @exp.arguments[0]
+          expect_to(be_falsey, actual, true)
         end
 
         def method_assert_equal
