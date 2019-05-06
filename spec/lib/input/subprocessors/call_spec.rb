@@ -84,6 +84,16 @@ module MinitestToRspec
           end
         end
 
+        context 'assert_not_nil' do
+          it 'replaces assert_not_nil with expect not_to be_nil' do
+            expect(
+              process(parse('assert_not_nil(kiwi)'))
+            ).to eq(
+                   parse('expect(kiwi).to_not(be_nil)')
+                 )
+          end
+        end
+
         context 'assert_not_equal' do
           it 'replaces assert_not_equal (two args) with expect to_not eq' do
             expect(
